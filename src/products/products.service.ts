@@ -3,6 +3,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaClient } from '@prisma/client';
 import { PaginationDto } from '../common/dto/pagination.dto';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class ProductsService  extends PrismaClient implements OnModuleInit{
@@ -52,7 +53,7 @@ export class ProductsService  extends PrismaClient implements OnModuleInit{
         available: true
       }
     });
-    if (!product) throw new HttpException(`No existe producto con ID ${id}`, HttpStatus.NOT_FOUND);
+    if (!product) throw new RpcException({message:`No existe producto con ID ${id}`, status:HttpStatus.NOT_FOUND});
     
     return product;
   }

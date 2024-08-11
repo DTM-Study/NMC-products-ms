@@ -1,4 +1,4 @@
-import { Controller, Get, Post,  Patch, Param, Delete,  ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post,  Patch, Delete,  ParseIntPipe } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -36,7 +36,7 @@ export class ProductsController {
 
   @Delete(':id')
   @MessagePattern({cmd:'delete_product'})
-  async remove(@Param('id', ParseIntPipe) id: number) {
+  async remove(@Payload('id', ParseIntPipe) id: number) {
     return await  this.productsService.remove(id);
   }
 }
