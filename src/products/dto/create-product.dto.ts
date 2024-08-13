@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsString , IsNotEmpty, IsNumber, min, Min } from "class-validator";
+import { IsString , IsNotEmpty, IsNumber, Min } from "class-validator";
 
 
 export class CreateProductDto {
