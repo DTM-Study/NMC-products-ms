@@ -9,9 +9,9 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 async function bootstrap() {
   const logger = new Logger('products-ms');
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-    transport: Transport.TCP,
+    transport: Transport.NATS,
     options: {
-      port: envs.PORT,
+      url: envs.NATS_HOSTS,
     }
   });
 
@@ -23,6 +23,6 @@ async function bootstrap() {
   ));
 
   await app.listen();
-  logger.log(`Product Microservice running on port ${envs.PORT}`);
+  logger.log(`Product Microservice Up`);
 }
 bootstrap();
